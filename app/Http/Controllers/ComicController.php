@@ -1,11 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
+use App\Comic;
 
 use Illuminate\Http\Request;
 
 class ComicController extends Controller
 {
+    //verranno create nuoive route list, per vederle"php artisan route:list"
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +14,9 @@ class ComicController extends Controller
      */
     public function index()
     {
-        //
+        $products= Comic::all();
+
+        return view('comics.index',compact('products'));     //comics.index è il file index dentro la cartella comics, in pratica ha la stessa funzione del vecchio ' welcome', e ci stampo i miei record presi secondo i parametri qui sopra
     }
 
     /**
