@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('fumetti','ComicController');   //con Route::resource con il primo parametro setto la rotta della uri, lo vediamo attraverso php artisan route:list,vediamo che andrà a pescare il metodo index o store ecc..., il secondo parametro sarà il controller da dove verranno pescati i record
+Route::resource('comics','ComicController');   //con Route::resource con il primo parametro setto la rotta della uri, lo vediamo attraverso php artisan route:list,vediamo che andrà a pescare il metodo index o store ecc..., il secondo parametro sarà il controller da dove verranno pescati i record
