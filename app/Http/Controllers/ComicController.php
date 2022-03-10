@@ -46,7 +46,7 @@ class ComicController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */                                   //questa funz serve per visualizzare un solo elemento
     public function show(Comic $comic)    //gliela sto assegnando io questa variabile,quindi posso darle il nome che voglio, FUNZIONA SOLO SE I NOMI COINCIDONO!!
     {
         //$product = Product::find($id);
