@@ -26,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -37,7 +37,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+
     }
 
     /**
@@ -46,9 +47,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comic $comic)    //gliela sto assegnando io questa variabile,quindi posso darle il nome che voglio, FUNZIONA SOLO SE I NOMI COINCIDONO!!
     {
-        //
+        //$product = Product::find($id);
+        return view('comics.show', compact('comic'));
     }
 
     /**
