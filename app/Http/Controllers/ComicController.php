@@ -44,13 +44,22 @@ class ComicController extends Controller
         $newComic->title=$data['title'];
         $newComic->series=$data['series'];
         $newComic->thumb=$data['thumb'];                       //è fondamentale inserire tutti i dati che chiediamo nel create
-        $newComic->description=$data['description'];
+        $newComic->description=$data['description'];           //questo è il caso più sicuro perche so esattamente i dati che vado a prendere 
         $newComic->price=$data['price'];
         $newComic->sale_date=$data['sale_date'];
         $newComic->type=$data['type'];
-
         $newComic->save();
-
+        
+        //$newComic= new Comic;                                   //generalmente si usa nell CREATE 
+        //$newComic->fill($data)                                  //un'altro modo di scrivere i dati,riceve dalla form anche valori che non sono previsti
+        //$newComic->save();                                      //per farlo funzionare dovrò mettere "protected $fillable=['name','type' ecc... tutti i dati che mi servono]" nel Model
+        //return redirect()->route('comics.show',$newComic->id);
+        
+                                                                
+        //$newComic=Comic::create($data);                         //generalmente si usa nello STORE
+        //return redirect()->route('comics.show',$newComic->id);  //riceve dalla form anche valori che non sono previsti, basta che il name è l'id dell'input sono uguali
+                                                                  //per farlo funzionare dovrò mettere  "protected $guarded=['ad eccezione di']" dentro al Model, cioè non prende il valore/i tra quadre
+        
         return redirect()->route('comics.show',$newComic->id);
     }
 
@@ -59,8 +68,8 @@ class ComicController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */                                   //questa funz serve per visualizzare un solo elemento
-    public function show(Comic $comic)    //gliela sto assegnando io questa variabile,quindi posso darle il nome che voglio, FUNZIONA SOLO SE I NOMI COINCIDONO!!
+     */                                     //questa funz serve per visualizzare un solo elemento
+    public function show(Comic $comic)      //gliela sto assegnando io questa variabile,quindi posso darle il nome che voglio, FUNZIONA SOLO SE I NOMI COINCIDONO!!
     {
         //$product = Product::find($id);
         return view('comics.show', compact('comic'));
