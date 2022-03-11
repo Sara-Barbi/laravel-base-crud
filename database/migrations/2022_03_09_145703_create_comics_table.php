@@ -26,6 +26,10 @@ class CreateComicsTable extends Migration
             $table->timestamps();
         });
     }
+    //ogni volta che fai php artisan migrate:reset 
+    //e ogniu volta che fai php artisan migrate
+    //RICORDATI DI LANCIARE DI NUOVO IL SEEDER
+    
 
     /**
      * Reverse the migrations.

@@ -14,9 +14,9 @@ class ComicController extends Controller
      */
     public function index()
     {
-        $products= Comic::all();
+        $comics= Comic::all();
 
-        return view('comics.index',compact('products'));     //comics.index è il file index dentro la cartella comics, in pratica ha la stessa funzione del vecchio ' welcome', e ci stampo i miei record presi secondo i parametri qui sopra
+        return view('comics.index',compact('comics'));     //comics.index è il file index dentro la cartella comics, in pratica ha la stessa funzione del vecchio ' welcome', e ci stampo i miei record presi secondo i parametri qui sopra
     }
 
     /**
@@ -40,28 +40,28 @@ class ComicController extends Controller
         //prendo i dati dalla form
         $data=$request->all();
         //inserisco un nuovo elemento
-        $newComic= new Comic;
-        $newComic->title=$data['title'];
-        $newComic->series=$data['series'];
-        $newComic->thumb=$data['thumb'];                       //è fondamentale inserire tutti i dati che chiediamo nel create
-        $newComic->description=$data['description'];           //questo è il caso più sicuro perche so esattamente i dati che vado a prendere 
-        $newComic->price=$data['price'];
-        $newComic->sale_date=$data['sale_date'];
-        $newComic->type=$data['type'];
-        $newComic->save();
+        //$newComic= new Comic;
+        //$newComic->title=$data['title'];
+        //$newComic->series=$data['series'];
+        //$newComic->thumb=$data['thumb'];                       //è fondamentale inserire tutti i dati che chiediamo nel create
+        //$newComic->description=$data['description'];           //questo è il caso più sicuro perche so esattamente i dati che vado a prendere 
+        //$newComic->price=$data['price'];
+        //$newComic->sale_date=$data['sale_date'];
+        //$newComic->type=$data['type'];
+        //$newComic->save();
+        //return redirect()->route('comics.show',$newComic->id);
         
         //$newComic= new Comic;                                   //generalmente si usa nell CREATE 
         //$newComic->fill($data)                                  //un'altro modo di scrivere i dati,riceve dalla form anche valori che non sono previsti
-        //$newComic->save();                                      //per farlo funzionare dovrò mettere "protected $fillable=['name','type' ecc... tutti i dati che mi servono]" nel Model
-        //return redirect()->route('comics.show',$newComic->id);
+        //$newComic->save();                                      //per farlo funzionare dovrò mettere "protected $fillable=['name','type' ecc... tutti i dati che mi servono]" nel Model o
+        //return redirect()->route('comics.show',$newComic->id);  //"protected $guarded=['ad eccezione di']"
         
                                                                 
-        //$newComic=Comic::create($data);                         //generalmente si usa nello STORE
-        //return redirect()->route('comics.show',$newComic->id);  //riceve dalla form anche valori che non sono previsti, basta che il name è l'id dell'input sono uguali
-                                                                  //per farlo funzionare dovrò mettere  "protected $guarded=['ad eccezione di']" dentro al Model, 
-                                                                  //cioè non prende il valore/i tra quadre
+        $newComic=Comic::create($data);                           //generalmente si usa nello STORE
+        return redirect()->route('comics.show',$newComic->id);    //riceve dalla form anche valori che non sono previsti, basta che il name è l'id dell'input sono uguali
+                                                                  //per farlo funzionare dovrò mettere  "protected $guarded=['ad eccezione di']" dentro al Model,cioè non prende il valore/i tra quadre O  mettere "protected $fillable=['name','type' ecc... tutti i dati che mi servono]" nel Model, 
+                                                                  //o  mettere "protected $fillable=['name','type' ecc... tutti i dati che mi servono]"sempre nel Model 
         
-        return redirect()->route('comics.show',$newComic->id);
     }
 
     /**

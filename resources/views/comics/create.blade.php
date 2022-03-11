@@ -20,7 +20,7 @@
     <label for="price">Price</label>
     <input type="text" name="price" id="price">
     
-    <label for="sale_date">sale_date(yyyy-mm-gg)</label>
+    <label for="sale_date">Sale Date(yyyy-mm-gg)</label>
     <input type="text" name="sale_date" id="sale_date">
 
     <label for="type">Tipology</label>
