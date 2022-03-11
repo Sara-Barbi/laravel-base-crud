@@ -7,7 +7,7 @@
     <title>@yeld('title')</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
-<body>
+<body class="original_back">
     @yield('content')
 </body>
 </html>
