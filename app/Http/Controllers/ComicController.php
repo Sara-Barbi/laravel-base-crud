@@ -58,7 +58,8 @@ class ComicController extends Controller
                                                                 
         //$newComic=Comic::create($data);                         //generalmente si usa nello STORE
         //return redirect()->route('comics.show',$newComic->id);  //riceve dalla form anche valori che non sono previsti, basta che il name è l'id dell'input sono uguali
-                                                                  //per farlo funzionare dovrò mettere  "protected $guarded=['ad eccezione di']" dentro al Model, cioè non prende il valore/i tra quadre
+                                                                  //per farlo funzionare dovrò mettere  "protected $guarded=['ad eccezione di']" dentro al Model, 
+                                                                  //cioè non prende il valore/i tra quadre
         
         return redirect()->route('comics.show',$newComic->id);
     }
