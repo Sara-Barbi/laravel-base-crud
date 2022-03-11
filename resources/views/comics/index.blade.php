@@ -22,6 +22,10 @@
         </ul>
         <a href="{{route("comics.show", $product->id)}}"><button type="button" class="btn btn-primary">See More</button></a>  <!--con questo bottone richiamo la rotta comics/show dove show sarà il numero id del mio elemento.Quindi verrò indirizzato alla vista show.blade.php-->
         <a href="{{route("comics.edit", $product->id)}}"><button type="button" class="btn btn-primary">Edit</button></a>  <!--con questo bottone richiamo la rotta comics/edit dove potrò modificare il mio elemento.Quindi verrò indirizzato alla vista edit.blade.php-->
-
+        <form action="{{route("comics.destroy", $product->id)}}" method="POST" onsubmit="return confirm('sicuro?')">
+            @csrf
+            @method("DELETE")
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
     @endforeach
 @endsection

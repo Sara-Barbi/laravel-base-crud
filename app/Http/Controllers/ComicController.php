@@ -98,15 +98,16 @@ class ComicController extends Controller
         //in questa fase abbiamo un codice che è uguale a quello nello store, ma al posto di generare un nuovo elemento(richiamando il Model)chiamo la variabile che lo rappresenta, che mi andrà a prendere proprio quell'oggetto li.
         $data=$request->all();
         //inserisco un nuovo elemento nel database 
-        $comic->title=$data['title'];
-        $comic->series=$data['series'];
-        $comic->thumb=$data['thumb'];
-        $comic->description=$data['description'];
-        $comic->price=$data['price'];                    //è fondamentale inserire tutti i dati che chiediamo nel create
-        $comic->sale_date=$data['sale_date'];
-        $comic->type=$data['type'];
+        //$comic->title=$data['title'];
+        //$comic->series=$data['series'];
+        //$comic->thumb=$data['thumb'];
+        //$comic->description=$data['description'];
+        //$comic->price=$data['price'];                    //è fondamentale inserire tutti i dati che chiediamo nel create
+        //$comic->sale_date=$data['sale_date'];
+        //$comic->type=$data['type'];
 
-        $comic->save();
+       // $comic->save();
+        $product->update($data);                          //metodo meno sicuro ma più compatto a livello di codice
 
         return redirect()->route('comics.show',$comic->id);
         
@@ -118,8 +119,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        
+        return redirect()->route('comics.index')->with(['mes'=>'cancellato']);
     }
 }
