@@ -37,13 +37,18 @@ class ComicController extends Controller
      */
     public function store(Request $request)  //per salvare il nuovo elemento nel database
     {
+        //prendo i dati dalla form
         $data=$request->all();
+        //inserisco un nuovo elemento
         $newComic= new Comic;
         $newComic->title=$data['title'];
         $newComic->series=$data['series'];
-        $newComic->thumb=$data['thumb'];
+        $newComic->thumb=$data['thumb'];                       //è fondamentale inserire tutti i dati che chiediamo nel create
         $newComic->description=$data['description'];
         $newComic->price=$data['price'];
+        $newComic->sale_date=$data['sale_date'];
+        $newComic->type=$data['type'];
+
         $newComic->save();
 
         return redirect()->route('comics.show',$newComic->id);
@@ -79,9 +84,23 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic) //prendo anche 
     {
-        //
+        //in questa fase abbiamo un codice che è uguale a quello nello store, ma al posto di generare un nuovo elemento(richiamando il Model)chiamo la variabile che lo rappresenta, che mi andrà a prendere proprio quell'oggetto li.
+        $data=$request->all();
+        //inserisco un nuovo elemento nel database 
+        $comic->title=$data['title'];
+        $comic->series=$data['series'];
+        $comic->thumb=$data['thumb'];
+        $comic->description=$data['description'];
+        $comic->price=$data['price'];                    //è fondamentale inserire tutti i dati che chiediamo nel create
+        $comic->sale_date=$data['sale_date'];
+        $comic->type=$data['type'];
+
+        $comic->save();
+
+        return redirect()->route('comics.show',$comic->id);
+        
     }
 
     /**

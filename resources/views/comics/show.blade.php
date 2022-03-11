@@ -18,5 +18,19 @@
                 {{$comic->price}}
             </li>
         </ul>
+        <ul>
+            <strong>Sale Date:</strong> 
+            <li>
+                {{$comic->sale_date}}
+            </li>
+        </ul>    
+        <ul>
+            <strong>Tipology:</strong> 
+            <li>
+                {{$comic->type}}
+            </li>
+        </ul>
+
+        <a href="{{route("comics.index")}}"><button type="button" class="btn btn-primary">back</button></a>
 
 @endsection
