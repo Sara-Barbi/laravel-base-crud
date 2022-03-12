@@ -3,13 +3,15 @@
 @section('title','comics list')
 
 @section('content')
-<a href="{{route("comics.create")}}"><button type="button" class="btn btn-success">Aggiungi</button></a>  <!--questo bottone se cliccato reindirizza alla route comics/create, possiamo vedere la rotta con php artisan route:list-->
+<div class="text-center">
+    <a href="{{route("comics.create")}}"><button type="button" class="btn btn-success mb-5 mt-5">Aggiungi</button></a>  <!--questo bottone se cliccato reindirizza alla route comics/create, possiamo vedere la rotta con php artisan route:list-->
+</div>
 @foreach($comics as $comic)
-<div class="d-flex flex-column align-items-center">
+<div class="container d-flex flex-column align-items-center">
     <h1>{{$comic->title}}</h1>
     <p><strong>Series:</strong> {{$comic->series}}</p>
     <img src="{{$comic->thumb}}" alt="">
-    <ul>
+    <ul class="p-0">
         <strong>Description:</strong> 
         <li>
             {{$comic->description}}
