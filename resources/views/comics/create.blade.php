@@ -7,7 +7,10 @@
     @csrf
     <h1 class="mt-5">Create New Comics!</h1>
     <label for="title" class="form-label m-3">Title</label>
-    <input type="text" name="title" id="title" class="form-control col-6 text-center " placeholder="Insert Title">
+    <input type="text" name="title" id="title" class="form-control col-6 text-center " placeholder="Insert Title" value="{{old("title")}}">
+    @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
     <label for="series" class="form-label m-3">Series</label>
     <input type="text" name="series" id="series" class="form-control col-6 text-center " placeholder="Insert Series">
@@ -28,5 +31,15 @@
     <input type="text" name="type" id="type" class="form-control col-6 text-center " placeholder="Insert Tipology">
 
     <button type="submit" class="btn btn-success m-5">Aggiungi</button>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 </form>
 @endsection

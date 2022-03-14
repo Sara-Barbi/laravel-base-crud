@@ -37,6 +37,16 @@ class ComicController extends Controller
      */
     public function store(Request $request)  //per salvare il nuovo elemento nel database
     {
+        $request->validate([
+            "title"=>"required|string|max:80|unique:comics",
+            "series"=>"required|string|max:80",
+            "thumb"=>"required|url",
+            "price"=>"required|min:1|max:2000",
+            "description"=>"required|string",
+            "sale_date"=>"required|date",
+            "type"=>"required|string|min:1|max:2000",
+
+        ]);
         //prendo i dati dalla form
         $data=$request->all();
         //inserisco un nuovo elemento
@@ -96,6 +106,15 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic) //prendo anche 
     {
+        $request->validate([
+            "title"=>"required|string|max:80|unique:comics,title,{$comic->id}",
+            "series"=>"required|string|max:80",
+            "thumb"=>"required|url",
+            "price"=>"required|min:1|max:2000",
+            "description"=>"required|string",
+            "sale_date"=>"required|date",
+            "type"=>"required|string|min:1|max:2000",
+        ]);
         //in questa fase abbiamo un codice che è uguale a quello nello store, ma al posto di generare un nuovo elemento(richiamando il Model)chiamo la variabile che lo rappresenta, che mi andrà a prendere proprio quell'oggetto li.
         $data=$request->all();
         //inserisco un nuovo elemento nel database 
