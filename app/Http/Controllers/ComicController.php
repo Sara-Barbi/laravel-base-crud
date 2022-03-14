@@ -127,7 +127,7 @@ class ComicController extends Controller
         //$comic->type=$data['type'];
 
        // $comic->save();
-        $product->update($data);                          //metodo meno sicuro ma più compatto a livello di codice
+        $comic->update($data);                          //metodo meno sicuro ma più compatto a livello di codice
 
         return redirect()->route('comics.show',$comic->id);
         
