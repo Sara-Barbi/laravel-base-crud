@@ -41,7 +41,7 @@ class ComicController extends Controller
             "title"=>"required|string|max:80|unique:comics",
             "series"=>"required|string|max:80",
             "thumb"=>"required|url",
-            "price"=>"required|min:1|max:2000",
+            "price"=>"required|numeric",
             "description"=>"required|string",
             "sale_date"=>"required|date",
             "type"=>"required|string|min:1|max:2000",
@@ -107,10 +107,10 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic) //prendo anche 
     {
         $request->validate([
-            "title"=>"required|string|max:80|unique:comics,title,{$comic->id}",
+            "title"=>"required|string|max:80|unique:comics,title,{$comic->id}",    //con title,{comic->id} rendo possibile l'editaggio su gli altri valori e non sul titolo, cioè, quando vado a editare(cambiare) un elemento sul browser,se volessi cambiare solo il prezzo, non sarebbe possibile, perche abbiamo messo il titolo unique e quindi non può essere uguale, questo perchè fa il controllo 'validate' anche su se stesso,rendendo impossibile l'unique. in questo caso le stiamo dicendo che 
             "series"=>"required|string|max:80",
             "thumb"=>"required|url",
-            "price"=>"required|min:1|max:2000",
+            "price"=>"required|numeric",
             "description"=>"required|string",
             "sale_date"=>"required|date",
             "type"=>"required|string|min:1|max:2000",

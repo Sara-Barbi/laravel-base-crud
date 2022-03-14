@@ -6,10 +6,11 @@
 <form action="{{ route("comics.update",$comic->id) }}" class="text-center d-flex flex-column align-items-center" method='POST'>   <!--comic->id serve per recuperate proprio quell'elem con quell'id. dove lo trovo? semplice , nel Controller nella sezione edit vedrò che ho passato la variabile comic che contiene il singolo elemento dove abbiamo cliccato edit-->
     @csrf
     @method('PUT')                                                     <!--grazie al metodo PUT riesco a prendere il mio elemento, come faccio a sapere se prendere PUT o GET?? lo vedo nella Route List-->
-    <h1>STAI MODIFICANDO : {{$comic->title}}</h1>                                                                 <!--  in questo caso ho visionato la route list e ho visto che per la mia rotta desiderata('update') ho bisogno del PUT-->
+    <h1>STAI MODIFICANDO : <strong>{{$comic->title}}</strong></h1>           
+                                                          <!--  in questo caso ho visionato la route list e ho visto che per la mia rotta desiderata('update') ho bisogno del PUT-->
     <label class="form-label m-3" for="title">Title</label>
     <input type="text" name="title" id="title"class="form-control col-6 text-center " placeholder="Insert Title"
-    value="{{old("title")??$comic->title}}">
+    value="{{old("title")??$comic->title}}">                            <!--questa è una condizione if. O fa l'old(cioe va a scrivere cosa c'è stato precedentemente inserito a mano) o ci mette il 'title' di quell'elemento lì. Stiamo parlando di editaggio, perciò è comodo avere i parametri di ciò che vogliamo modificare già scritti, soprattutto se ne vogliamo cambiare solo 1.In questo caso se viene cancellato tutto ciò che c'è scritto nell'imput apparirà il placeholder.-->
     @error('title')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
@@ -57,6 +58,6 @@
     @enderror
 
 
-    <button type="submit" class="">Aggiungi</button>
+    <button type="submit" class="btn btn-success m-5">Aggiungi</button>
 </form>
 @endsection
